@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+// router
+import RouteHandler from './router/route-handler';
+// layouts
+import Header from './components/layouts/header';
+import NavBar from './components/common/navbar';
+import Content from './components/layouts/content';
+// styles
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            activePage: ''
+        }
+    }
+    render() {
+        return (
+            <div className="App">
+                <Router>
+                    <Header>
+                        <NavBar />
+                    </Header>
+                    <Content>
+                        <RouteHandler setActivePage={this.setActivePage}/>
+                    </Content>
+                </Router>
+            </div>
+        );
+    }
 }
 
 export default App;
